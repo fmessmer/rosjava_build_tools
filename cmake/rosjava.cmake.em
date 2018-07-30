@@ -87,7 +87,7 @@ macro(catkin_rosjava_setup)
     file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/${PROJECT_NAME}-src)
     add_custom_target(gradle-${PROJECT_NAME} ALL
         #COMMAND ${ROSJAVA_ENV} ${CATKIN_ENV} "env" "|" "grep" "ROS" 
-        COMMAND ${ROSJAVA_ENV} ${CATKIN_ENV} ${${PROJECT_NAME}_gradle_BINARY} ${gradle_options} --project-dir ${CMAKE_CURRENT_SOURCE_DIR} -PbuildDir=${PROJECT_BINARY_DIR}/${PROJECT_NAME}-src ${gradle_tasks}
+        COMMAND ${ROSJAVA_ENV} ${CATKIN_ENV} ${${PROJECT_NAME}_gradle_BINARY} ${gradle_options} --project-dir ${CMAKE_CURRENT_SOURCE_DIR}  --project-cache-dir ${PROJECT_BINARY_DIR}/${PROJECT_NAME}-src/.gradle -PbuildDir=${PROJECT_BINARY_DIR}/${PROJECT_NAME}-src ${gradle_tasks}
         WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/${PROJECT_NAME}-src
         VERBATIM
         COMMENT "Gradling tasks for ${PROJECT_NAME}"
@@ -135,7 +135,7 @@ macro(catkin_android_setup)
     file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/${PROJECT_NAME}-src)
     add_custom_target(gradle-${PROJECT_NAME}
         ALL
-        COMMAND ${ROSJAVA_ENV} ${CATKIN_ENV} ${${PROJECT_NAME}_gradle_BINARY} --project-dir ${CMAKE_CURRENT_SOURCE_DIR} -PbuildDir=${PROJECT_BINARY_DIR}/${PROJECT_NAME}-src ${gradle_tasks}
+        COMMAND ${ROSJAVA_ENV} ${CATKIN_ENV} ${${PROJECT_NAME}_gradle_BINARY} --project-dir ${CMAKE_CURRENT_SOURCE_DIR} --project-cache-dir ${PROJECT_BINARY_DIR}/${PROJECT_NAME}-src/.gradle -PbuildDir=${PROJECT_BINARY_DIR}/${PROJECT_NAME}-src ${gradle_tasks}
         WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/${PROJECT_NAME}-src
         VERBATIM
     )
