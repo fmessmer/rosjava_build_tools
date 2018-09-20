@@ -45,8 +45,12 @@ if __name__ == '__main__':
         repo = get_environment_variable(environment_variables, 'ROS_MAVEN_DEPLOYMENT_REPOSITORY')
         if repo is None:
             repo = os.path.join(workspaces[0], 'share', 'maven')
-        else:
+        else: #ROS_MAVEN_DEPLOYMENT_REPOSITORY is already set
             if repo in [os.path.join(w, 'share', 'maven') for w in workspaces]:
+                # ROS_MAVEN_DEPLOYMENT_REPOSITORY is part of workspace chain
+                pass
+            else:
+                # ROS_MAVEN_DEPLOYMENT_REPOSITORY is NOT part of workspace chain, set to top-most workspace
                 repo = os.path.join(workspaces[0], 'share', 'maven')
         print(repo)
     elif args.maven_repository:
