@@ -14,8 +14,8 @@ import shutil
 import exceptions
 
 # local imports
-import utils
-import console
+from rosjava_build_tools import utils
+from rosjava_build_tools import console
 
 ##############################################################################
 # Methods
