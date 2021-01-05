@@ -11,7 +11,10 @@ import sys
 import argparse
 import subprocess
 import shutil
-import exceptions
+try:
+    import exceptions
+except ImportError:
+    import builtins as exceptions
 
 # local imports
 from rosjava_build_tools import utils
