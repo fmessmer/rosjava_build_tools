@@ -12,8 +12,8 @@ import catkin_pkg
 from catkin_pkg.package_templates import create_package_xml, PackageTemplate
 
 # local imports
-import utils
-import console
+from rosjava_build_tools import utils
+from rosjava_build_tools import console
 
 ##############################################################################
 # Methods
@@ -87,7 +87,7 @@ def populate_repo(repo_path, package_type):
     author = utils.author_name()
     repo_name = os.path.basename(repo_path)
     templates = get_templates(package_type)
-    for filename, template in templates.iteritems():
+    for filename, template in templates.items():
         contents = instantiate_template(template, repo_name, author)
         try:
             p = os.path.abspath(os.path.join(repo_path, filename))
